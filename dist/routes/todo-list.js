@@ -9,25 +9,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('angular2/core');
-var router_1 = require('angular2/router');
-var index_1 = require('./routes/index');
-var App = (function () {
-    function App() {
+var TodoList = (function () {
+    function TodoList() {
     }
-    App = __decorate([
+    TodoList = __decorate([
         core_1.Component({
-            selector: 'todo-app',
-            template: "\n        <h1>TODO</h1>\n        <div>\n            <a [routerLink]=\"['TodoList']\">Todos</a>\n            <a [routerLink]=\"['NewTodo']\">New Todo</a>\n        </div>\n        <router-outlet></router-outlet>\n    ",
-            directives: [router_1.ROUTER_DIRECTIVES],
-            providers: [router_1.ROUTER_PROVIDERS],
-            styles: []
-        }),
-        router_1.RouteConfig([
-            { name: 'TodoList', path: '/todos', component: index_1.TodoList, useAsDefaultDefault: true },
-            { name: 'NewTodo', path: '/new', component: index_1.NewTodo }
-        ]), 
+            selector: 'todo-list',
+            template: "\n        <h1>Todo list</h1>\n    ",
+            directives: [],
+            providers: []
+        }), 
         __metadata('design:paramtypes', [])
-    ], App);
-    return App;
+    ], TodoList);
+    return TodoList;
 }());
-exports.App = App;
+exports.TodoList = TodoList;

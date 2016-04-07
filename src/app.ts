@@ -1,34 +1,27 @@
 import {Component} from 'angular2/core'
-import {NameComponent} from './name-component'
-import {FriendsService} from './friends'
+import {ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouteConfig} from 'angular2/router'
+
+import {NewTodo, TodoDetail, TodoList} from './routes/index'
 
 
 @Component({
-    selector: 'jazoon-app',
+    selector: 'todo-app',
     template: `
-        <input type="text" [(ngModel)]="myName"/>
-        <name-component [(name)]="myName"></name-component>
-        <ul>
-        <li *ngFor="#friend of friendService.list">{{friend}}</li>
-</ul>
+        <h1>TODO</h1>
+        <div>
+            <a [routerLink]="['TodoList']">Todos</a>
+            <a [routerLink]="['NewTodo']">New Todo</a>
+        </div>
+        <router-outlet></router-outlet>
     `,
-    directives: [NameComponent],
-    providers: [FriendsService]
+    directives: [ROUTER_DIRECTIVES],
+    providers: [ROUTER_PROVIDERS],
+    styles: []
 })
+@RouteConfig([
+    {name: 'TodoList', path: '/todos', component: TodoList, useAsDefaultDefault: true},
+    {name: 'NewTodo', path: '/new', component: NewTodo}
+])
 export class App {
-    myName:string;
-    isDisabled:boolean = false;
-    foos:string[];
 
-    constructor(public friendService:FriendsService) {
-        //       setInterval(() => {
-        //           this.isDisabled = !this.isDisabled
-        //       }, 1000);
-
-        this.myName = 'Gabriel!'
-    }
-
-    nameChanged(name:string) {
-        this.myName = name;
-    }
 }

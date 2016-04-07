@@ -11,8 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("angular2/core");
 var FriendsService = (function () {
     function FriendsService() {
-        console.log('init friends service');
-        this.list = ['FirstFriend', 'SecondFriend'];
+        this.list = ['Rebi', 'Sam', 'Isa', 'Mu'];
     }
     FriendsService = __decorate([
         core_1.Injectable(), 
