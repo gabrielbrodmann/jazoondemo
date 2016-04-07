@@ -9,9 +9,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('angular2/core');
+var friends_1 = require('./friends');
 var NameComponent = (function () {
-    function NameComponent() {
+    function NameComponent(friendsService) {
         this.nameChange = new core_1.EventEmitter();
+        this.friends = friendsService.list;
     }
     NameComponent.prototype.changeName = function () {
         this.nameChange.emit(this.name + '!!!');
@@ -27,9 +29,10 @@ var NameComponent = (function () {
     NameComponent = __decorate([
         core_1.Component({
             selector: 'name-component',
-            template: "\n        <h1>Hello my name is {{name}}</h1>\n        <button (click)=\"changeName()\"></button>\n    "
+            template: "\n        <h1>Hello my name is {{name}}</h1>\n        <button (click)=\"changeName()\"></button>\n    ",
+            providers: []
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [friends_1.FriendsService])
     ], NameComponent);
     return NameComponent;
 }());

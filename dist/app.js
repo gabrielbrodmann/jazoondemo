@@ -10,13 +10,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('angular2/core');
 var name_component_1 = require('./name-component');
+var friends_1 = require('./friends');
 var App = (function () {
-    function App() {
-        this.isDisabled = false;
+    function App(friendService) {
         //       setInterval(() => {
         //           this.isDisabled = !this.isDisabled
         //       }, 1000);
-        this.foos = ['Gabriel', 'Rebi'];
+        this.friendService = friendService;
+        this.isDisabled = false;
         this.myName = 'Gabriel!';
     }
     App.prototype.nameChanged = function (name) {
@@ -25,10 +26,11 @@ var App = (function () {
     App = __decorate([
         core_1.Component({
             selector: 'jazoon-app',
-            template: "\n        <input type=\"text\" [(ngModel)]=\"myName\"/>\n        <name-component [(name)]=\"myName\"></name-component>\n    ",
-            directives: [name_component_1.NameComponent]
+            template: "\n        <input type=\"text\" [(ngModel)]=\"myName\"/>\n        <name-component [(name)]=\"myName\"></name-component>\n        <ul>\n        <li *ngFor=\"#friend of friendService.list\">{{friend}}</li>\n</ul>\n    ",
+            directives: [name_component_1.NameComponent],
+            providers: [friends_1.FriendsService]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [friends_1.FriendsService])
     ], App);
     return App;
 }());

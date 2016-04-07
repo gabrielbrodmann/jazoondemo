@@ -1,5 +1,6 @@
 import {Component} from 'angular2/core'
 import {NameComponent} from './name-component'
+import {FriendsService} from './friends'
 
 
 @Component({
@@ -7,19 +8,23 @@ import {NameComponent} from './name-component'
     template: `
         <input type="text" [(ngModel)]="myName"/>
         <name-component [(name)]="myName"></name-component>
+        <ul>
+        <li *ngFor="#friend of friendService.list">{{friend}}</li>
+</ul>
     `,
-    directives: [NameComponent]
+    directives: [NameComponent],
+    providers: [FriendsService]
 })
 export class App {
     myName:string;
     isDisabled:boolean = false;
     foos:string[];
 
-    constructor() {
+    constructor(public friendService:FriendsService) {
         //       setInterval(() => {
         //           this.isDisabled = !this.isDisabled
         //       }, 1000);
-        this.foos = ['Gabriel', 'Rebi'];
+
         this.myName = 'Gabriel!'
     }
 
