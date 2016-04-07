@@ -9,27 +9,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('angular2/core');
-var name_component_1 = require('./name-component');
-var App = (function () {
-    function App() {
-        this.isDisabled = false;
-        //       setInterval(() => {
-        //           this.isDisabled = !this.isDisabled
-        //       }, 1000);
-        this.foos = ['Gabriel', 'Rebi'];
-        this.myName = 'Gabriel!';
+var NameComponent = (function () {
+    function NameComponent() {
+        this.nameChange = new core_1.EventEmitter();
     }
-    App.prototype.nameChanged = function (name) {
-        this.myName = name;
+    NameComponent.prototype.changeName = function () {
+        this.nameChange.emit(this.name + '!!!');
     };
-    App = __decorate([
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], NameComponent.prototype, "name", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], NameComponent.prototype, "nameChange", void 0);
+    NameComponent = __decorate([
         core_1.Component({
-            selector: 'jazoon-app',
-            template: "\n        <input type=\"text\" [(ngModel)]=\"myName\"/>\n        <name-component [(name)]=\"myName\"></name-component>\n    ",
-            directives: [name_component_1.NameComponent]
+            selector: 'name-component',
+            template: "\n        <h1>Hello my name is {{name}}</h1>\n        <button (click)=\"changeName()\"></button>\n    "
         }), 
         __metadata('design:paramtypes', [])
-    ], App);
-    return App;
+    ], NameComponent);
+    return NameComponent;
 }());
-exports.App = App;
+exports.NameComponent = NameComponent;
